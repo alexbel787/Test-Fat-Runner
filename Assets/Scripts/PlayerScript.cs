@@ -85,15 +85,11 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            print("!!!!!!!!");
-        }
         if (Mathf.Abs(joystick.Horizontal) > 0 && !GMS.disableInput)
         {
             RunForestRun();
-            if (joystick.Horizontal > 0 && transform.position.x < 1.3f) HorizontalMove();
-            else if (joystick.Horizontal < 0 && transform.position.x > 0.2f) HorizontalMove();
+            if (joystick.Horizontal > 0 && transform.position.x < 1.45f) HorizontalMove();
+            else if (joystick.Horizontal < 0 && transform.position.x > 0.05f) HorizontalMove();
         }
 
         if (transform.position.y > .015f) transform.position = new Vector3(transform.position.x, .01f, transform.position.z);
@@ -134,7 +130,7 @@ public class PlayerScript : MonoBehaviour
             if (strength > 2) strength = 2;
             else SetBodySize(vol / 2);
             SoundManager.instance.RandomizeSfx(.7f, SoundManager.instance.pigSounds[7]);
-            var particle = Instantiate(GMS.particlesPrefabs[2], transform.position, Quaternion.identity);
+            var particle = Instantiate(GMS.particlesPrefabs[2], transform.position + new Vector3(0, .3f, 0), Quaternion.identity);
             Destroy(particle, 2);
             Destroy(other.gameObject);
         }
